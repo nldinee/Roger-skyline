@@ -207,11 +207,12 @@ pr "[+] Applying New apache config"
 sudo a2enmod ssl
 sudo a2enmod headers
 sudo a2enconf ssl-params
+sudo a2ensite default-ssl.conf
 
 echo "ServerName ${IP_ADDRESS}" >> /etc/apache2/apache2.conf
 
-pr "	-- Checking for sysntax errors"
+pr "-- Checking for sysntax errors"
 apache2ctl configtest
 sleep 2
-pr "	-- Restatring apache service"
+pr "-- Restatring apache service"
 service apache2 restart
