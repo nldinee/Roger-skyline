@@ -72,10 +72,10 @@ sed -i -e 's/'"allow-hotplug enp0s3"'/''/g' /etc/network/interfaces
 cd /etc/network/interfaces.d/
 touch enp0s3
 
-echo "iface enp0s3 inet static" >> enp0s3
-echo "	address ${IP_ADDRESS}" >> enp0s3
-echo "	netmask ${NET_MASK}" >> enp0s3
-echo "	gateway ${GATEWAY}" >> enp0s3
+echo "iface enp0s3 inet static" > enp0s3
+echo "	address ${IP_ADDRESS}" > enp0s3
+echo "	netmask ${NET_MASK}" > enp0s3
+echo "	gateway ${GATEWAY}" > enp0s3
 pr "	- Restarting network"
 service networking restart
 
@@ -186,14 +186,28 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 	-out /etc/ssl/certs/apache-selfsigned.crt \
 	-subj "/C=SI/ST=MA/L=RA/O=Security/OU=IT Department/CN=${IP_ADDRESS}"
 
+if [ -f /etc/apache2/conf-available/ssl-params.conf ]
+then
+	cp /etc/apache2/conf-available/ssl-params.conf /etc/apache2/conf-available/ssl-params.conf.bak
+	rm -rf /etc/apache2/conf-available/ssl-params.conf
+fi
 cp ${SCRIPTS_DIR}/conf/ssl-params.conf /etc/apache2/conf-available/ssl-params.conf
 
-cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf.bak
-rm -rf /etc/apache2/sites-available/000-default.conf
+if [ -f /etc/apache2/conf-available/ssl-params.conf ]
+
+if [ -f /etc/apache2/sites-available/000-default.conf]
+then
+	cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf.bak
+	rm -rf /etc/apache2/sites-available/000-default.conf
+fi
 cp ${SCRIPTS_DIR}/conf/000-default.conf /etc/apache2/sites-available/000-default.conf
 
-cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak
-rm -rf /etc/apache2/sites-available/default-ssl.conf
+
+if [ -f /etc/apache2/sites-available/default-ssl.conf]
+then
+	cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak
+	rm -rf /etc/apache2/sites-available/default-ssl.conf
+fi
 cp ${SCRIPTS_DIR}/conf/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 
 pr "[+] Applying New apache config"
