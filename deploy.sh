@@ -3,8 +3,10 @@
 #install all needed packages
 
 # Config
+SCRIPT_DIR="$( cd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null 2>&1 && pwd)"
+SCRIPTS_DIR="${SCRIPT_DIR}"
+
 MAIL_NAME=debian.lan
-SCRIPTS_DIR=/home/nabdelba/scripts
 IP_ADDRESS=10.11.254.42
 NET_MASK=255.255.255.252
 GATEWAY=10.11.254.254
