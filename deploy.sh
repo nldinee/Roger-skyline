@@ -187,7 +187,7 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 	-subj "/C=SI/ST=MA/L=RA/O=Security/OU=IT Department/CN=${IP_ADDRESS}"
 
 if [ -f /etc/apache2/conf-available/ssl-params.conf ];
-then;
+then
 	cp /etc/apache2/conf-available/ssl-params.conf /etc/apache2/conf-available/ssl-params.conf.bak;
 	rm -rf /etc/apache2/conf-available/ssl-params.conf;
 fi;
@@ -196,7 +196,7 @@ cp ${SCRIPTS_DIR}/conf/ssl-params.conf /etc/apache2/conf-available/ssl-params.co
 if [ -f /etc/apache2/conf-available/ssl-params.conf ];
 
 if [ -f /etc/apache2/sites-available/000-default.conf];
-then;
+then
 	cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf.bak;
 	rm -rf /etc/apache2/sites-available/000-default.conf;
 fi;
@@ -204,7 +204,7 @@ cp ${SCRIPTS_DIR}/conf/000-default.conf /etc/apache2/sites-available/000-default
 
 
 if [ -f /etc/apache2/sites-available/default-ssl.conf];
-then;
+then
 	cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak;
 	rm -rf /etc/apache2/sites-available/default-ssl.conf;
 fi;
