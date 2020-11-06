@@ -208,6 +208,8 @@ sudo a2enmod ssl
 sudo a2enmod headers
 sudo a2enconf ssl-params
 
+echo "ServerName ${IP_ADDRESS}" >> /etc/apache2/apache2.conf
+
 pr "	-- Checking for sysntax errors"
 apache2ctl configtest
 sleep 2
