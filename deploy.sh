@@ -73,9 +73,9 @@ cd /etc/network/interfaces.d/
 touch enp0s3
 
 echo "iface enp0s3 inet static" > enp0s3
-echo "	address ${IP_ADDRESS}" > enp0s3
-echo "	netmask ${NET_MASK}" > enp0s3
-echo "	gateway ${GATEWAY}" > enp0s3
+echo "	address ${IP_ADDRESS}" >> enp0s3
+echo "	netmask ${NET_MASK}" >> enp0s3
+echo "	gateway ${GATEWAY}" >> enp0s3
 pr "	- Restarting network"
 service networking restart
 
