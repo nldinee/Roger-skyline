@@ -204,5 +204,5 @@ sudo a2enconf ssl-params
 pr "	-- Checking for sysntax errors"
 apache2ctl configtest
 sleep 2
-"	-- Restatring apache service"
+pr "	-- Restatring apache service"
 service apache2 restart
