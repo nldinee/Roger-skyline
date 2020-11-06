@@ -46,7 +46,7 @@ declare -a pkgs=(
 
 echo "postfix postfix/mailname string $MAIL_NAME" | debconf-set-selections
 echo "postfix postfix/main_mailer_type string Local only" | debconf-set-selections
-echo "postfix postfix/root_address string root@$(MAIL_NAME)" | debconf-set-selections
+echo "postfix postfix/root_address string root@${MAIL_NAME}" | debconf-set-selections
 echo "postfix postfix/protocols select ipv6" | debconf-set-selections
 echo "portsentry portsentry/startup_conf_obsolete note" | debconf-set-selections	
 echo "portsentry portsentry/warn_no_block note" | debconf-set-selections
