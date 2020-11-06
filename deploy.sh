@@ -168,7 +168,6 @@ sudo systemctl disable console-setup.service
 sudo systemctl disable keyboard-setup.service
 sudo systemctl disable apt-daily.timer
 sudo systemctl disable apt-daily-upgrade.timer
-sudo systemctl disable syslog.service
 #to list all services:
 sudo service --status-all
 
@@ -187,15 +186,15 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 	-out /etc/ssl/certs/apache-selfsigned.crt \
 	-subj "/C=SI/ST=MA/L=RA/O=Security/OU=IT Department/CN=${IP_ADDRESS}"
 
-cp ${SRC_DIR}/conf/ssl-params.conf /etc/apache2/conf-available/ssl-params.conf
+cp ${SCRIPTS_DIR}/conf/ssl-params.conf /etc/apache2/conf-available/ssl-params.conf
 
 cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf.bak
 rm -rf /etc/apache2/sites-available/000-default.conf
-cp ${SRC_DIR}/conf/000-default.conf /etc/apache2/sites-available/000-default.conf
+cp ${SCRIPTS_DIR}/conf/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak
 rm -rf /etc/apache2/sites-available/default-ssl.conf
-cp ${SRC_DIR}/conf/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
+cp ${SCRIPTS_DIR}/conf/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 
 pr "[+] Applying New apache config"
 
